@@ -34,7 +34,7 @@ function Header({ user }) {
           Mapa
         </SafeLink>
         <SafeLink className="about" to="/about">
-          Acerca de
+          Quienes somos
         </SafeLink>
 
         <span
