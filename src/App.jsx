@@ -15,6 +15,7 @@ import FuelTable from './components/FuelTable';
 import Register from './components/Register';
 import Login from './components/Login';
 import Footer from './components/Footer';
+import Perfil from './components/Perfil';
 import { NotFound } from './NotFound';
 
 // Componente principal de la aplicación
@@ -73,6 +74,7 @@ function App() {
           <Route path="/registro" element={<Register />} />
           <Route path="/login" element={<Login onLogin={setUser} />} />
           <Route path="/about" element={<About />} />
+          <Route path="/perfil" element={<Perfil user={user}/>} />
 
           <Route path="/" element={<Home stations={stations} />} />
           <Route path="/mapa" element={<FuelMap stations={stations} />} />
