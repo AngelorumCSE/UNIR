@@ -27,10 +27,35 @@ import { NotFound } from './NotFound';
 // El componente Header se encarga de mostrar la barra de navegación y el estado de autenticación del usuario.
 // El componente Routes se encarga de definir las diferentes rutas de la aplicación y los componentes que se renderizan en cada ruta.
 // El componente BrowserRouter se encarga de gestionar la navegación entre las diferentes rutas de la aplicación.
+
+function getUserFromStorage() {
+  const item = localStorage.getItem('user');
+  if (!item) return null;
+
+  try {
+    return item;
+  } catch (err) {
+    console.error('Error al parsear el usuario:', err);
+    return null;
+  }
+}
+
 function App() {
 
+  
+
+
+
   const [stations, setStations] = useState([]);
-  const [user, setUser] = useState(null);
+  //const [user, setUser] = useState(null);
+  const user = getUserFromStorage();
+
+  if (user) {
+  console.log('Usuario logueado:', user.name);
+} else {
+  console.log('No hay usuario');
+}
+
   const [loading, setLoading] = useState(true);   // Inicialmente cargando ...
   const [error, setError] = useState(null);
 
@@ -72,7 +97,7 @@ function App() {
       {!loading && !error && (
         <Routes>
           <Route path="/registro" element={<Register />} />
-          <Route path="/login" element={<Login onLogin={setUser} />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/about" element={<About />} />
           <Route path="/perfil" element={<Perfil user={user}/>} />
 

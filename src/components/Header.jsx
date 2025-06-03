@@ -7,6 +7,8 @@ import "./Header.css";
 function Header({ user }) {
   const handleLogout = () => {
     // Lógica de cierre de sesión
+    localStorage.removeItem('user');
+    window.location.href = '/';
     console.log("Cerrar sesión");
   };
   const handleLogin = () => {
