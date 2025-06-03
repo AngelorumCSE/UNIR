@@ -34,9 +34,6 @@ function Header({ user }) {
         <SafeLink className="about" to="/about">
           Acerca de
         </SafeLink>
-        <SafeLink className="about" to="/about">
-          Quienes somos
-        </SafeLink>
 
         <span
           style={{ marginLeft: "auto", marginRight: "1rem", float: "right" }}
