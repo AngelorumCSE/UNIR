@@ -40,14 +40,28 @@ function getUserFromStorage() {
   }
 }
 
+function getLastLoginFromStorage() {
+  const item = localStorage.getItem('lastLogin');
+  if (!item) return null;
+
+  try {
+    return item;
+  } catch (err) {
+    console.error('Error al parsear el último login:', err);
+    return null;
+  }
+}
+
+
+
 function App() {
 
   
-
-
-
+  
+  
   const [stations, setStations] = useState([]);
-  //const [user, setUser] = useState(null);
+  const lastLogin = getLastLoginFromStorage();
+  console.log('Last Login:', lastLogin);
   const user = getUserFromStorage();
 
   if (user) {
@@ -99,7 +113,7 @@ function App() {
           <Route path="/registro" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/about" element={<About />} />
-          <Route path="/perfil" element={<Perfil user={user}/>} />
+          <Route path="/perfil" element={<Perfil user={user} logintext={lastLogin}/>} />
 
           <Route path="/" element={<Home stations={stations} />} />
           <Route path="/mapa" element={<FuelMap stations={stations} />} />
