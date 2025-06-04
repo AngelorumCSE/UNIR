@@ -7,6 +7,8 @@ import "./Header.css";
 function Header({ user }) {
   const handleLogout = () => {
     // Lógica de cierre de sesión
+    localStorage.removeItem('user');
+    window.location.href = '/';
     console.log("Cerrar sesión");
   };
   const handleLogin = () => {
@@ -30,9 +32,6 @@ function Header({ user }) {
         </SafeLink>
         <SafeLink className="mapa" to="/mapa" style={{ marginRight: "1rem" }}>
           Mapa
-        </SafeLink>
-        <SafeLink className="about" to="/about">
-          Acerca de
         </SafeLink>
         <SafeLink className="about" to="/about">
           Quienes somos
