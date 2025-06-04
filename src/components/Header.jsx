@@ -1,50 +1,72 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import logo from '../assets/logo.png';
+import React from "react";
+import { SafeLink } from "./SafeLink";
+import logo from "../assets/logo.png";
 
-
-import './Header.css'
+import "./Header.css";
 
 function Header({ user }) {
-    const handleLogout = () => {
-        // Lógica de cierre de sesión
-        console.log('Cerrar sesión');
-    };
-    const handleLogin = () => {
-        // Lógica de inicio de sesión
-        console.log('Iniciar sesión');
-    };
+  const handleLogout = () => {
+    // Lógica de cierre de sesión
+    console.log("Cerrar sesión");
+  };
+  const handleLogin = () => {
+    // Lógica de inicio de sesión
+    console.log("Iniciar sesión");
+  };
 
-    return (
-        <header>
-            <nav>
-                <Link to="/" style={{ marginRight: '1rem' }}>
-                    <img src={logo} alt="Logo" style={{ height: '3em' }} />
-                </Link>
-                
-                <Link className='buscador' to="/lista" style={{ marginRight: '1rem' }}>Buscador</Link>
-                <Link className='mapa' to="/mapa" style={{ marginRight: '1rem' }}>Mapa</Link>
-                <Link className='about' to="/about">Acerca de nosotros</Link>
-                
-                <span style={{ marginLeft: 'auto', marginRight: '1rem', float: 'right' }}>
-                    {(!user) &&
-                        <>
-                            <Link className='login' to="/login" style={{ marginRight: '1rem' }}>Login</Link>
-                            <Link className='registro' to="/registro">Registro</Link>
-                        </>
-                    }
-                    {user &&
-                        <>
-                            <span style={{ marginRight: '1rem' }}>Bienvenido, <Link to="/perfil">{user}</Link></span>
-                            <button onClick={handleLogout}>Cerrar sesión</button>
-                        </>
-                    }
-                </span>
+  return (
+    <header>
+      <nav>
+        <SafeLink to="/" style={{ marginRight: "1rem" }}>
+          <img src={logo} alt="Logo" style={{ height: "3em" }} />
+        </SafeLink>
 
+        <SafeLink
+          className="buscador"
+          to="/lista"
+          style={{ marginRight: "1rem" }}
+        >
+          Buscador
+        </SafeLink>
+        <SafeLink className="mapa" to="/mapa" style={{ marginRight: "1rem" }}>
+          Mapa
+        </SafeLink>
+        <SafeLink className="about" to="/about">
+          Acerca de
+        </SafeLink>
+        <SafeLink className="about" to="/about">
+          Quienes somos
+        </SafeLink>
 
-            </nav>
-        </header>
-    );
+        <span
+          style={{ marginLeft: "auto", marginRight: "1rem", float: "right" }}
+        >
+          {!user && (
+            <>
+              <SafeLink
+                className="login"
+                to="/login"
+                style={{ marginRight: "1rem" }}
+              >
+                Login
+              </SafeLink>
+              <SafeLink className="registro" to="/registro">
+                Registro
+              </SafeLink>
+            </>
+          )}
+          {user && (
+            <>
+              <span style={{ marginRight: "1rem" }}>
+                Bienvenido, <SafeLink to="/perfil">{user}</SafeLink>
+              </span>
+              <button onClick={handleLogout}>Cerrar sesión</button>
+            </>
+          )}
+        </span>
+      </nav>
+    </header>
+  );
 }
 
 export default Header;
