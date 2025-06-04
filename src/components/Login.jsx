@@ -17,12 +17,18 @@ function Login({ onLogin }) {
     });
     const data = await res.json();
     if (res.ok) {
-      setMsg('¡Bienvenido, ' + data.username + '!');
+      setMsg('¡Bienvenido, ' + data.username + '!. Redirigiendo a la página principal en 5 segundos.');
       localStorage.setItem('token', data.token);
+      localStorage.setItem('user', data.username);
+      const now = new Date();
+      const formatted = now.toLocaleString();
+      localStorage.setItem('lastLogin', formatted);
       if (onLogin) onLogin(data.username);
+      setTimeout(() => {window.location.href ='/'}, 5000);
     } else {
       setMsg(data.message);
     }
+  
   };
 
   return (
